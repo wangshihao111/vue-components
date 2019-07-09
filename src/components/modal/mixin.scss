@@ -1,0 +1,82 @@
+@mixin border-1px($color, $direction) {
+  &::after {
+    content: '';
+    position: absolute;
+    background: $color;
+
+    @if $direction==left {
+      left: 0;
+      top: 0;
+      width: 1px;
+      height: 100%;
+      transform: scaleX(0.5);
+      transform-origin: left 0;
+    }
+
+    @if $direction==right {
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: 1px;
+      transform: scaleX(0.5);
+      transform-origin: right 0;
+    }
+
+    @if $direction==bottom {
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      transform: scaleY(0.5);
+      transform-origin: 0 bottom;
+    }
+
+    @if $direction==top {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      transform: scaleY(0.5);
+      transform-origin: 0 top;
+    }
+  }
+}
+
+
+.mask-enter {
+  animation: fade 0.2s linear;
+}
+
+.confirm-enter {
+  animation: scales 0.2s linear;
+}
+
+.mask-leave {
+  transition: all 0.2s linear;
+  opacity: 0;
+}
+
+.confirm-leave {
+  transition: all 0.2s linear;
+  transform: scale(0);
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes scales {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
