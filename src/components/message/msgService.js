@@ -13,24 +13,28 @@ MsgBox.install = function(Vue) {
     if (typeof config === 'string') {
       props.content = config;
     } else {
-      const { onShow, onClose, ...propData } = config;
-      Object.assign(props, propData);
+      Object.assign(props, config);
     }
     const msg = new Msg({
       propsData: props
     });
 
-    // 挂载组件
-    const el = msg.$mount().$el;
+    /*
+    * 挂载组件
+    * 由于vue挂载后会替换挂载点dom节点，所以最终需要移除的dom是挂载后的dom
+    * */
+    const el = document.createElement('div'); // 创建挂载点
     document.body.appendChild(el);
+    const element = msg.$mount(el).$el;
     // 监听事件
     msg.$on('show', () => {
-      console.log('created');
       config.onShow && config.onShow();
     });
     msg.$on('close', () => {
       msg.$destroy();
-      document.body.removeChild(el);
+      setTimeout(() => {
+        document.body.removeChild(element);
+      }, 200);
       config.onClose && config.onClose();
     });
   };

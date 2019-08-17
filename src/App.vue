@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
     <Loading type="circle" />
     <Confirm v-show="confirm" @cancel="closeConfirm" @confirm="onConfirm"></Confirm>
     <Alert v-show="alert" @confirm="alert=false"></Alert>
@@ -18,14 +17,17 @@
     <Button @click="alert=!alert" type="primary">alert</Button>
     <div style="width: 100%; height: 50%;">
       <Tabs :defaultTab="1">
-        <TabItem :k="0" label="one">1</TabItem>
-        <TabItem :k="1" label="two">2</TabItem>
-        <TabItem :k="2" label="three">3</TabItem>
-        <TabItem :k="3" label="three">3</TabItem>
-        <TabItem :k="4" label="three">3</TabItem>
+        <TabItem :k="0" label="one">
+          ；v阿斯顿女阿斯顿
+        </TabItem>
+        <TabItem :k="1" label="two">22345ed</TabItem>
+        <TabItem :k="2" label="three">3234erst</TabItem>
+        <TabItem :k="3" label="three">3234ert</TabItem>
+        <TabItem :k="4" label="three">32324ert</TabItem>
       </Tabs>
     </div>
     <Button @click="createMsg">createmsg</Button>
+    <svg-icon icon="left" size="32" class="svg"></svg-icon>
   </div>
 </template>
 
@@ -88,4 +90,7 @@ export default {
 </script>
 
 <style lang="scss">
+.svg {
+  fill: blue;
+}
 </style>

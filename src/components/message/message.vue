@@ -1,6 +1,6 @@
 <template>
   <transition name="message">
-    <div class="container" v-show="visable" @click="closeImmediatelay">
+    <div class="container" v-show="visible" @click="closeImmediatelay">
       {{content}}
     </div>
   </transition>
@@ -20,7 +20,7 @@ export default {
   },
   data() {
     return {
-      visable: false
+      visible: true
     };
   },
   mounted() {
@@ -28,15 +28,16 @@ export default {
   },
   methods: {
     showMsg() {
-      this.visable = true;
-      this.$nextTick(() => this.$emit("show"));
-      const animTimeout = this.timeout - 200;
-      this.showTime = setTimeout(() => {
-        this.visable = false;
-      }, animTimeout);
-      this.timer = setTimeout(() => {
-        this.$emit("close");
-      }, this.timeout);
+      // this.visable = true;
+      // this.$nextTick(() => this.$emit("show"));
+      // const animTimeout = this.timeout - 200;
+      // this.showTime = setTimeout(() => {
+      //   this.visable = false;
+      // }, animTimeout);
+      // this.timer = setTimeout(() => {
+      //   this.$emit("close");
+      // }, this.timeout);
+      setTimeout(() => this.$emit('close'), 2000)
     },
     closeImmediatelay() {
       this.$emit("close");
