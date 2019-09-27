@@ -28,6 +28,12 @@
     </div>
     <Button @click="createMsg">createmsg</Button>
     <svg-icon icon="left" size="32" class="svg"></svg-icon>
+    <div class="wrapper">
+      <div style="height: 50px"></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
   </div>
 </template>
 
@@ -41,6 +47,8 @@ import Alert from "./components/modal/alert";
 import Button from "@/components/m-button/m-button";
 import Tabs from "@/components/tabs/tabs";
 import TabItem from "@/components/tabs/tab-item";
+import {http} from './plugins/http'
+import {mapTo} from 'rxjs/operators';
 
 export default {
   name: "app",
@@ -64,7 +72,9 @@ export default {
   },
   watch: {
   },
-  mounted() {},
+  mounted() {
+    http.post('http://localhost:3030/user', {age: 189}).subscribe(r => console.log(r));
+  },
   methods: {
     closeConfirm() {
       this.confirm = false;
@@ -85,12 +95,26 @@ export default {
         }
       });
     }
-  }
+  },
 };
 </script>
 
 <style lang="scss">
 .svg {
   fill: blue;
+}
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-flow: wrap;
+  border: 1px solid #ccc;
+  // justify-content: space-around;
+  div {
+    width: 30%;
+    height: 80px;
+    margin: 1.66%;
+    background: #0f0;
+    align-self: center;
+  }
 }
 </style>
